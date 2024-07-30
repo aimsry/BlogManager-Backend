@@ -49,9 +49,9 @@ public class ReferralController extends BaseController{
      * 根据jobTitle查询内推信息
      */
     @GetMapping
-    public TableDataInfo getReferralByJobTitle(@RequestParam String jobTitle){
+    public TableDataInfo getReferralByJobTitle(@RequestParam String jobTitle,@RequestParam String address){
         startPage();
-        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle);
+        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle,address);
         return getDataTable(list);
     }
 }

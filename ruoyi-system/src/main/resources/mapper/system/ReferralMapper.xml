@@ -21,7 +21,7 @@
         from referral
     </sql>
     <select id="selectReferralList"  resultMap="BaseResultMap">
-        <include refid="selectReferralVo"/>
+        select * from referral
     </select>
     <select id="selectReferralById" parameterType="integer" resultMap="BaseResultMap">
         select * from referral where referralID = #{referralID}
@@ -32,11 +32,35 @@
     <select id="selectUnreviewedReferrals" resultMap="BaseResultMap">
         select * from referral where referral_status = 0
     </select>
-    <select id="selectReviewedReferralByJobTitle" parameterType="string" resultType="com.ruoyi.system.domain.Referral">
-        select * from referral where jobTitle like concat('%',#{jobTitle},'%') and referral_status=1
+    <select id="selectReviewedReferralByJobTitle" parameterType="map" resultMap="BaseResultMap">
+        select * from referral
+        <where>
+             referral_status=1
+            <if test="jobTitle != null and jobTitle !=''">
+                and jobTitle like concat('%', #{jobTitle}, '%')
+            </if>
+            <if test="address != null and address != ''">
+                <if test="jobTitle != null and jobTitle != ''">
+                    and
+                </if>
+                and address = #{address}
+            </if>
+        </where>
     </select>
-    <select id="selectUnreviewedReferralByJobTitle" parameterType="string" resultType="com.ruoyi.system.domain.Referral">
-        select * from referral where jobTitle like concat('%',#{jobTitle},'%') and referral_status = 0
+    <select id="selectUnreviewedReferralByJobTitle" parameterType="map" resultMap="BaseResultMap">
+        select * from referral
+        <where>
+            referral_status=0
+            <if test="jobTitle != null and jobTitle !=''">
+                and jobTitle like concat('%', #{jobTitle}, '%')
+            </if>
+            <if test="address != null and address != ''">
+                <if test="jobTitle != null and jobTitle != ''">
+                    and
+                </if>
+                and address = #{address}
+            </if>
+        </where>
     </select>
 
     <insert id="insertReferral">

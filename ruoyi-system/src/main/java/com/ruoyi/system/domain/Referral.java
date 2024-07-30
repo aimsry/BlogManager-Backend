@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.util.Date;
 @Data
+@Getter
+@Setter
 public class Referral {
     private int referralID;
     private String companyName;
@@ -18,6 +20,9 @@ public class Referral {
     private Date startTime;
     private Date endTime;
     private int referral_status;
+    public Referral(){
+        referral_status = 0;
+    }
     public Referral(int referralID,String companyName,String jobTitle,String address,String salary,
                     String contactNumber,String contactName,String techRquirement,Date startTime,Date endTime){
         this.referralID = referralID;

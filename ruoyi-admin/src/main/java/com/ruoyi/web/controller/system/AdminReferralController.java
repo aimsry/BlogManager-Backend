@@ -75,9 +75,9 @@ public class AdminReferralController extends BaseController {
      * 按照jobTitle获取已审核内推
      */
     @GetMapping("/managerReviewedReferral")
-    public TableDataInfo getReviewedReferralByJobTitle(@RequestParam String jobTitle){
+    public TableDataInfo getReviewedReferralByJobTitle(@RequestParam String jobTitle,@RequestParam String address){
         startPage();
-        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle);
+        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle,address);
         return getDataTable(list);
     }
 
@@ -85,10 +85,10 @@ public class AdminReferralController extends BaseController {
      * 按照jobTitle获取未审核内推
      */
     @GetMapping("/managerUnreviewedReferral")
-    public TableDataInfo getUnreviewedReferralByJobTitle(@RequestParam String jobTitle){
+    public TableDataInfo getUnreviewedReferralByJobTitle(@RequestParam String jobTitle,@RequestParam String address){
         startPage();
-        List<Referral> list = referralService.selectUnreviewedReferralByJobTitle(jobTitle);
-        return getDataTable(referralService.selectUnreviewedReferralByJobTitle(jobTitle));
+        List<Referral> list = referralService.selectUnreviewedReferralByJobTitle(jobTitle,address);
+        return getDataTable(list);
     }
 
     /**

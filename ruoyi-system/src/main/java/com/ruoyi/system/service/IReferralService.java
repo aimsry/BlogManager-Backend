@@ -13,7 +13,7 @@ public interface IReferralService {
     int deleteReferral(Integer referralID);
     List<Referral> selectReviewedReferrals();
     List<Referral> selectUnreviewedReferrals();
-    List<Referral> selectReviewedReferralByJobTitle(String jobTitle);
-    List<Referral> selectUnreviewedReferralByJobTitle(String jobTitle);
+    List<Referral> selectReviewedReferralByJobTitle(String jobTitle, String address);
+    List<Referral> selectUnreviewedReferralByJobTitle(String jobTitle, String address);
 
 }
