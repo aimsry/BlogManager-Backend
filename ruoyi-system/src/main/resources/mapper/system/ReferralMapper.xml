@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ReferralMapper">
+    <resultMap id="BaseResultMap" type="com.ruoyi.system.domain.Referral">
+        <id column="referralID" property="referralID" />
+        <result column="companyName" property="companyName" />
+        <result column="jobTitle" property="jobTitle" />
+        <result column="address" property="address" />
+        <result column="salary" property="salary" />
+        <result column="contactNumber" property="contactNumber" />
+        <result column="contactName" property="contactName" />
+        <result column="techRquirements" property="techRquirement" />
+        <result column="startTime" property="startTime" />
+        <result column="endTime" property="endTime" />
+        <result column="referral_status" property="referral_status" />
+    </resultMap>
+    <sql id="selectReferralVo">
+        select referralID, companyName, jobTitle, address, salary, contactNumber, contactName,techRquirements, startTime, endTime, referal_status
+        from referral
+    </sql>
+    <select id="selectReferralList"  resultMap="BaseResultMap">
+        <include refid="selectReferralVo"/>
+    </select>
+    <select id="selectReferralById" parameterType="integer" resultMap="BaseResultMap">
+        select * from referral where referralID = #{referralID}
+    </select>
+    <select id="selectReviewedReferrals" resultMap="BaseResultMap">
+        select * from referral where referral_status=1
+    </select>
+    <select id="selectUnreviewedReferrals" resultMap="BaseResultMap">
+        select * from referral where referral_status = 0
+    </select>
+    <select id="selectReviewedReferralByJobTitle" parameterType="string" resultType="com.ruoyi.system.domain.Referral">
+        select * from referral where jobTitle like concat('%',#{jobTitle},'%') and referral_status=1
+    </select>
+    <select id="selectUnreviewedReferralByJobTitle" parameterType="string" resultType="com.ruoyi.system.domain.Referral">
+        select * from referral where jobTitle like concat('%',#{jobTitle},'%') and referral_status = 0
+    </select>
+
+    <insert id="insertReferral">
+        insert into referral (companyName, jobTitle, address, salary, contactNumber, contactName, techRquirements, startTime, endTime)
+        value (#{companyName}, #{jobTitle},#{address},#{salary},#{contactNumber},#{contactName},#{techRquirement},#{startTime},#{endTime})
+    </insert>
+    <update id="updateReferral">
+        update referral
+        set companyName = #{companyName},
+            jobTitle = #{jobTitle},
+            address = #{address},
+            salary = #{salary},
+            contactNumber = #{contactNumber},
+            contactName = #{contactName},
+            techRquirements = #{techRquirement},
+            startTime = #{startTime},
+            endTime = #{endTime},
+            referral_status = #{referral_status}
+        where referralID = #{referralID}
+    </update>
+    <delete id="deleteReferralById" parameterType="integer">
+        delete from referral where referralID = #{referralID}
+    </delete>
+</mapper>
