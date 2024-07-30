@@ -67,7 +67,7 @@ public class AdminReferralController extends BaseController {
      * 删除未审核内推信息
      */
     @DeleteMapping("/managerUnreviewedReferral/{referralID}")
-    public AjaxResult deleteUnreviewedReferral(@RequestParam Integer referralID){
+    public AjaxResult deleteUnreviewedReferral(@PathVariable Integer referralID){
         return toAjax(referralService.deleteReferral(referralID));
     }
 
@@ -75,9 +75,9 @@ public class AdminReferralController extends BaseController {
      * 按照jobTitle获取已审核内推
      */
     @GetMapping("/managerReviewedReferral")
-    public TableDataInfo getReviewedReferralByJobTitle(@RequestParam String jobTitle,@RequestParam String address){
+    public TableDataInfo getReviewedReferralByJobTitle(@RequestParam String jobTitle){
         startPage();
-        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle,address);
+        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle);
         return getDataTable(list);
     }
 
@@ -85,9 +85,9 @@ public class AdminReferralController extends BaseController {
      * 按照jobTitle获取未审核内推
      */
     @GetMapping("/managerUnreviewedReferral")
-    public TableDataInfo getUnreviewedReferralByJobTitle(@RequestParam String jobTitle,@RequestParam String address){
+    public TableDataInfo getUnreviewedReferralByJobTitle(@RequestParam String jobTitle){
         startPage();
-        List<Referral> list = referralService.selectUnreviewedReferralByJobTitle(jobTitle,address);
+        List<Referral> list = referralService.selectUnreviewedReferralByJobTitle(jobTitle);
         return getDataTable(list);
     }
 

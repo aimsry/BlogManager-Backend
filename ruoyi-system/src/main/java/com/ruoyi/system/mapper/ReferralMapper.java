@@ -15,12 +15,12 @@ public interface ReferralMapper {
      * 按照jobTitle分页查询已经审核的内推
      * @param jobTitle 工作标题
      */
-    List<Referral> selectReviewedReferralByJobTitle(@Param("jobTitle") String jobTitle,@Param("address") String address);
+    List<Referral> selectReviewedReferralByJobTitle(@Param("jobTitle") String jobTitle);
 
     /**
      * 按照jobTitle分页查询未审核的内推
      */
-    List<Referral> selectUnreviewedReferralByJobTitle(@Param("jobTitle") String jobTitle,@Param("address") String address);
+    List<Referral> selectUnreviewedReferralByJobTitle(@Param("jobTitle") String jobTitle);
     /**
      * 按照内推信息ID获取详细信息
      * @param referralID 内推信息ID

@@ -39,12 +39,6 @@
             <if test="jobTitle != null and jobTitle !=''">
                 and jobTitle like concat('%', #{jobTitle}, '%')
             </if>
-            <if test="address != null and address != ''">
-                <if test="jobTitle != null and jobTitle != ''">
-                    and
-                </if>
-                and address = #{address}
-            </if>
         </where>
     </select>
     <select id="selectUnreviewedReferralByJobTitle" parameterType="map" resultMap="BaseResultMap">
@@ -53,12 +47,6 @@
             referral_status=0
             <if test="jobTitle != null and jobTitle !=''">
                 and jobTitle like concat('%', #{jobTitle}, '%')
-            </if>
-            <if test="address != null and address != ''">
-                <if test="jobTitle != null and jobTitle != ''">
-                    and
-                </if>
-                and address = #{address}
             </if>
         </where>
     </select>

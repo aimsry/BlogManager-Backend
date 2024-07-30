@@ -44,11 +44,11 @@ public class ReferralServiceImpl implements IReferralService {
         return referralMapper.selectUnreviewedReferrals();
     }
     @Override
-    public List<Referral> selectReviewedReferralByJobTitle(String jobTitle,String address){
-        return referralMapper.selectReviewedReferralByJobTitle(jobTitle, address);
+    public List<Referral> selectReviewedReferralByJobTitle(String jobTitle){
+        return referralMapper.selectReviewedReferralByJobTitle(jobTitle);
     }
     @Override
-    public List<Referral> selectUnreviewedReferralByJobTitle(String jobTitle, String address){
-        return referralMapper.selectUnreviewedReferralByJobTitle(jobTitle, address);
+    public List<Referral> selectUnreviewedReferralByJobTitle(String jobTitle){
+        return referralMapper.selectUnreviewedReferralByJobTitle(jobTitle);
     }
 }
