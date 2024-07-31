@@ -51,7 +51,8 @@ public class ReferralController extends BaseController{
     @GetMapping
     public TableDataInfo getReferralByJobTitle(@RequestParam String jobTitle){
         startPage();
-        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle);
+        List<Referral>list = referralService.selectReviewedReferralByJobTitle(jobTitle
+        );
         return getDataTable(list);
     }
 }
